@@ -5,7 +5,7 @@ import { Search } from "lucide-react";
 const SearchForm = ({query}: {query?: string}) => {
 
   return (
-    <Form action='/' scroll={false} className="form bg-white w-2/3 h-[55px] outline-2 px-6 py-2 outline-black rounded-full flex justify-between items-center text-black"> 
+    <Form action='/' scroll={false} className="form bg-white w-2/3 md:w-1/3 h-[55px] outline-2 px-6 py-2 outline-black outline-3 rounded-full flex justify-between items-center text-black"> 
         <input name="query" defaultValue={query} className="outline-none w-full h-full" placeholder="Search Startups"/>
 
         <div className="flex items-center gap-2">

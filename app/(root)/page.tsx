@@ -8,9 +8,10 @@ import { sanityFetch, SanityLive } from "@/sanity/lib/live";
 export default async function Home({searchParams}: {searchParams: Promise<{query?: string}>}) {  
 
   const query = (await searchParams).query;
+  const params = {search: query || null};
 
   // this allow to revalidate this page whenever new changes are made
-  const {data: dumyPost } = await sanityFetch({query: STARTUP_QEURIES});
+  const {data: dumyPost } = await sanityFetch({query: STARTUP_QEURIES, params});
 
   return (
     <>
@@ -29,7 +30,7 @@ export default async function Home({searchParams}: {searchParams: Promise<{query
 
         <ul className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-5 mt-12">
           {dumyPost.length > 0 ? dumyPost.map((post:StartupTypeCard) => ( <StartupCard key={post._id} post={post}/> )) : (
-            <p>No startups found</p>
+            <p className="uppercase text-lg font-semibold">No startups found ):</p>
           )}
         </ul>
       </section>

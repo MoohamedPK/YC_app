@@ -1,23 +1,16 @@
 import SearchForm from "@/components/SearchForm";
 import StartupCard from "@/components/StartupCard";
+import { client } from "@/sanity/lib/client";
+import { STARTUP_QEURIES } from "@/sanity/lib/queries";
+
+import { StartupTypeCard } from "@/components/StartupCard";
 
 export default async function Home({searchParams}: {searchParams: Promise<{query?: string}>}) {  
 
   const query = (await searchParams).query;
 
-  const dumyPost = [{
-    _id: 1,
-    createdAt: new Date(),
-    views: 20,
-    author: {
-      id:1,
-      name: "mohamed"
-    },
-    category: "robots",
-    title: "Wr robots",
-    description: "this is description",
-    image: "https://images.unsplash.com/photo-1563207153-f403bf289096?q=80&w=2071&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
-  }]
+  const dumyPost = await client.fetch(STARTUP_QEURIES);
+  
 
   return (
     <>
@@ -35,7 +28,7 @@ export default async function Home({searchParams}: {searchParams: Promise<{query
         </p>
 
         <ul className="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-4 mt-12">
-          {dumyPost.length > 0 ? dumyPost.map((post) => ( <StartupCard key={post._id} post={post}/> )) : (
+          {dumyPost.length > 0 ? dumyPost.map((post:StartupTypeCard) => ( <StartupCard key={post._id} post={post}/> )) : (
             <p>No startups found</p>
           )}
         </ul>

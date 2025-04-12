@@ -8,13 +8,13 @@ export type StartupTypeCard = Omit<Startup, "author"> & {author?: Author};
 
 const StartupCard = ({post}: {post:StartupTypeCard}) => {
 
-    const {createdAt, views, author, _id, title, description, category, image} = post;
+    const {_createdAt, views, author, _id, title, description, category, image} = post;
 
   return (
     <li className="px-6 py-3 border-4 border-r-8 border-b-8 border-black rounded-lg group hover:border-pink-600 transition-all duration-300">
         <div className="flex justify-between items-center">
             <p className="font-semibold text-sm">
-                {formateDate(createdAt)}
+                {formateDate(_createdAt)}
             </p>
 
             <div className="flex items-center space-x-2">

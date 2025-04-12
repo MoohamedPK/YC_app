@@ -11,18 +11,20 @@
     "prebuild": "npm run typegen",
     "typegen": "sanity schema extract --path=./sanity/extract.json && sanity typegen generate"
   },
-  "packageManager": "npm@10.5.2",
   "overrides": {
     "react": "$react",
-    "react-dom": "$react-dom"
+    "react-dom": "$react-dom",
+    "next": "$next"
   },
+  "packageManager": "npm@10.5.2",
   "dependencies": {
     "@sanity/image-url": "^1.1.0",
     "@sanity/vision": "^3.83.0",
     "class-variance-authority": "^0.7.1",
     "clsx": "^2.1.1",
     "lucide-react": "^0.487.0",
-    "next": "15.2.4",
+    "markdown-it": "^14.1.0",
+    "next": "^15.3.1-canary.6",
     "next-auth": "^5.0.0-beta.25",
     "next-sanity": "^9.8.58-canary.0",
     "react": "^19.0.0",
@@ -37,6 +39,7 @@
   "devDependencies": {
     "@eslint/eslintrc": "^3",
     "@tailwindcss/postcss": "^4",
+    "@types/markdown-it": "^14.1.2",
     "@types/node": "^20",
     "@types/react": "^19",
     "@types/react-dom": "^19",

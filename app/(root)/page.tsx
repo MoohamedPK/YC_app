@@ -15,15 +15,15 @@ export default async function Home({searchParams}: {searchParams: Promise<{query
 
   return (
     <>
-      <section className="bg-pink-600 px-6 py-4 flex flex-col justify-center items-center space-y-8 min-h-[380px] text-center"> 
-        <h1 className="bg-black text-white text-4xl uppercase font-semibold px-6 py-4 leading-13">pitch your startup,<br/>connect with entrepreneurs</h1>
-        <p className="capitalize font-semibold text-sm text-white">Lorem ipsum dolor, sit amet consectetur adipisicing elit. Beatae placeat est quo! Est, autem eligendi?</p>
+      <section className="pink-container"> 
+        <h1 className="pink-container-header">pitch your startup,<br/>connect with entrepreneurs</h1>
+        <p className="pink-container-para">Lorem ipsum dolor, sit amet consectetur adipisicing elit. Beatae placeat est quo! Est, autem eligendi?</p>
 
         <SearchForm query={query}/>
       </section>
 
 
-      <section className="mx-32 pt-12">
+      <section className="section-container">
         <p className="text-2xl font-semibold">
           {query ? `Search result for "${query}" ` : "All Startups"}
         </p>

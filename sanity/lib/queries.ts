@@ -9,3 +9,7 @@ export const STARTUP_BY_ID_QEURIES = defineQuery(`*[_type == "startup" && _id ==
     
     _id,title,slug,_createdAt, author -> {_id, name, username, image, bio}, views, description, category, image, pitch
     }`)
+
+export const STARTUP_VIEWS = defineQuery(`*[_type == "startup" && _id == $id ][0] {
+        _id, views
+    }`)

@@ -1,21 +1,51 @@
 "use client"
 
-import { useState } from "react"
+import { useState, useActionState } from "react"
 import { Input } from "./ui/input"
 import { Textarea } from "./ui/textarea";
 import MDEditor from "@uiw/react-md-editor";
 import { Button } from "./ui/button";
 import { Send } from "lucide-react";
+import { formSchema } from "@/lib/validation";
+import { z } from "zod";
 
 const StartupForm = () => {
 
     const [errors, setErrors] = useState<Record <string, string>>({}); // in order to know that it contains many strings within this obj
     const [pitch, setPitch] = useState("**Hello world!!!**");
 
-    const isPending = false;
+    const handleFormSubmit = async (prevState: any, formData: FormData) => {
+        try {
+            const formValues = {
+                title: formData.get('title') as string,
+                description: formData.get("description") as string,
+                category: formData.get("category") as string,
+                link: formData.get('link') as string,   
+                pitch
+            }
 
+            // using formSchema to validate the form values
+            await formSchema.parseAsync(formValues)
+            console.log(formValues);
+
+        } catch (error) {
+            if (error instanceof z.ZodError) {
+                const errorFields = error.flatten().fieldErrors;
+
+                setErrors(errorFields as unknown as Record<string, string>);
+
+                return {...prevState, error: "Validation faild", status: "ERROR"}
+            }
+
+            // if it isn't an error of instanceof zod, 
+            return {...prevState, error: "unxepected error has occured", status: "ERROR"};
+        }
+    }
+
+    const [state, formAction, isPending] = useActionState(handleFormSubmit, {error: "", state: "INITIAL"});
+    
   return (
-    <form action={() => {}} className="section-container startup-form">
+    <form action={formAction} className="section-container startup-form">
         <div>
             <label htmlFor="title" className="startup-form_label">Title</label>
             <Input id="title" name="title" placeholder="Startup title" className="startup-form_input"/>
@@ -50,7 +80,7 @@ const StartupForm = () => {
 
         <div data-color-mode='light'>
             <label htmlFor="pitch" className="startup-form_label">Pitch</label>
-            <MDEditor onChange={(value) => setPitch(value as string)} id="pitch" preview="edit" height={300} style={{borderRadius: 20, overflow: "hidden"}} className="startup-form_input"
+            <MDEditor value={pitch} onChange={(value) => setPitch(value as string)} id="pitch" preview="edit" height={300} style={{borderRadius: 20, overflow: "hidden"}} className="startup-form_input"
                 textareaProps={{
                     placeholder: "Briefly describe your idea and what problem it solves"
                 }}

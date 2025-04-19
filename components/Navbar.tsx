@@ -5,7 +5,7 @@ import Link from "next/link"
 const Navbar = async () => {
 
   const session = await auth()
-
+  
   return (
     <header>
         <nav className="flex justify-between items-center bg-white px-8 py-4 text-black font-semibold ">
@@ -16,7 +16,7 @@ const Navbar = async () => {
             <div className="flex items-center gap-5">
               {session && session?.user ? (    
                 <>
-                  <Link href='/'>Create</Link>
+                  <Link href='/create'>Create</Link>
 
                   <form  action={ async () => {
                     "use server"
@@ -26,7 +26,7 @@ const Navbar = async () => {
                     <button type="submit" className="cursor-pointer">Logout</button>
                   </form>
 
-                  <Link href={`/user/${session.user.id}}`}>
+                  <Link href={`/user/${session.id}`}>
                     <span>{session?.user?.name}</span>
                   </Link>
                 </>

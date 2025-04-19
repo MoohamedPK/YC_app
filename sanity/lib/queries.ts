@@ -17,3 +17,7 @@ export const STARTUP_VIEWS = defineQuery(`*[_type == "startup" && _id == $id ][0
 export const AUTHOR_BY_GITHUB_ID_QUERY = defineQuery(`*[_type == "author" && id == $id ][0] {
     _id,id,name,username,image,bio,email
     }`)
+
+export const AUTHOR_BY_ID_QUERY = defineQuery(`*[_type == "author" && _id == $id ][0] {
+    _id,id,name,username,image,bio,email
+    }`)

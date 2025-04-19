@@ -42,7 +42,7 @@ const StartupCard = ({post}: {post:StartupTypeCard}) => {
         </div>
 
         <Link className="space-y-3" href={`/startup/${_id}`}>
-            <p className=" text-sm">{description}</p>
+            <p className="line-clamp-2 text-sm">{description}</p>
 
             <img src={image} alt="subject image" className="h-[150px] w-full object-cover rounded-lg"/>
         </Link>

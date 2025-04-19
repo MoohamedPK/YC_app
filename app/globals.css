@@ -20,7 +20,7 @@
     @apply px-6 py-3 bg-yellow-400 font-bold rounded-lg uppercase 
   }
 
-  .section-container{
+  .section-container {
     @apply mx-32 pt-12
   }
 
@@ -52,6 +52,7 @@
         .startup-form_btn {
           @apply border-[4px] border-black rounded-full p-5 min-h-[70px] w-full font-bold text-[18px] ;
         }
+
 }
 
 @custom-variant dark (&:is(.dark *));

@@ -8,11 +8,14 @@ import { Button } from "./ui/button";
 import { Send } from "lucide-react";
 import { formSchema } from "@/lib/validation";
 import { z } from "zod";
+import { createPitch } from "@/lib/actions";
+import {useRouter} from "next/navigation";
 
 const StartupForm = () => {
 
     const [errors, setErrors] = useState<Record <string, string>>({}); // in order to know that it contains many strings within this obj
     const [pitch, setPitch] = useState("**Hello world!!!**");
+    const router = useRouter();
 
     const handleFormSubmit = async (prevState: any, formData: FormData) => {
         try {
@@ -26,7 +29,12 @@ const StartupForm = () => {
 
             // using formSchema to validate the form values
             await formSchema.parseAsync(formValues)
-            console.log(formValues);
+            
+            const result = await createPitch(prevState, formData, pitch);
+
+            if(result.state === "SUCCESS") {
+                router.push(`/startup/${result._id}`)
+            }
 
         } catch (error) {
             if (error instanceof z.ZodError) {

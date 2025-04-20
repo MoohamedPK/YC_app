@@ -7,7 +7,7 @@ import Link from "next/link"
 export type StartupTypeCard = Omit<Startup, "author"> & {author?: Author};
 
 const StartupCard = ({post}: {post:StartupTypeCard}) => {
-
+    
     const {_createdAt, views, author, _id, title, description, category, image} = post;
 
   return (
@@ -36,14 +36,14 @@ const StartupCard = ({post}: {post:StartupTypeCard}) => {
 
             <div>
                 <Link href={`/user/${author?._id}`}>
-                    <Image src="https://placehold.co/600x400" alt="profile pic" width={38} height={38} className="rounded-full"/>
+                    <Image src={author?.image} alt={author?.name} width={38} height={38} className="rounded-full"/>
                 </Link>
             </div>
         </div>
 
         <Link className="space-y-3" href={`/startup/${_id}`}>
             <p className="line-clamp-2 text-sm">{description}</p>
-
+            
             <img src={image} alt="subject image" className="h-[150px] w-full object-cover rounded-lg"/>
         </Link>
 

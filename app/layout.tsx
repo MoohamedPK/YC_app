@@ -1,6 +1,5 @@
 import type { Metadata } from "next";
 import "./globals.css";
-import "easymde/dist/easymde.min.css"
 
 export const metadata: Metadata = {
   title: "YC Directory",
@@ -15,7 +14,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body
-        className={`antialiased`}
+        
       >
         {children}
       </body>

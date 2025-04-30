@@ -4,7 +4,7 @@ import { STARTUP_QEURIES } from "@/sanity/lib/queries";
 
 import { StartupTypeCard } from "@/components/StartupCard";
 import { sanityFetch, SanityLive } from "@/sanity/lib/live";
-import { auth } from "@/auth";
+// import { auth } from "@/auth";
 
 export default async function Home({searchParams}: {searchParams: Promise<{query?: string}>}) {  
 
@@ -14,7 +14,7 @@ export default async function Home({searchParams}: {searchParams: Promise<{query
   // this allow to revalidate this page whenever new changes are made
   const {data: dumyPost } = await sanityFetch({query: STARTUP_QEURIES, params});
 
-  const session = await auth();
+  // const session = await auth();
 
   return (
     <>

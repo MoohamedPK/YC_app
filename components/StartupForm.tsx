@@ -17,6 +17,7 @@ const StartupForm = () => {
     const [pitch, setPitch] = useState("**Hello world!!!**");
     const router = useRouter();
 
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
     const handleFormSubmit = async (prevState: any, formData: FormData) => {
         try {
             const formValues = {
@@ -50,7 +51,7 @@ const StartupForm = () => {
         }
     }
 
-    const [state, formAction, isPending] = useActionState(handleFormSubmit, {error: "", state: "INITIAL"});
+    const [isPending, formAction] = useActionState(handleFormSubmit, {error: "", state: "INITIAL"});
     
   return (
     <form action={formAction} className="section-container startup-form">

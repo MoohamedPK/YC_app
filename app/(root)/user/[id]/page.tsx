@@ -6,7 +6,7 @@ import Image from "next/image";
 import { notFound } from "next/navigation";
 import { Suspense } from "react";
 
-export const experimental_ppr = true;
+// export const experimental_ppr = true;
 
 const page = async ({params}: {params: Promise<{id: string}>}) => {
 

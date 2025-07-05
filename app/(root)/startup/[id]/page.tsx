@@ -11,7 +11,7 @@ import View from "@/components/View";
 import StartupCard, { StartupTypeCard } from "@/components/StartupCard";
 
 const md = markdownit();
-export const experimental_ppr = true;
+// export const experimental_ppr = true;
 
 const page =  async({params}: {params: Promise<{id: string}>}) => {
 
@@ -36,7 +36,7 @@ const page =  async({params}: {params: Promise<{id: string}>}) => {
         </section>
 
         <section className="section-container">
-          <img className="rounded-lg w-full h-[500px] object-cover" src={post.image} alt="thumbnail" />
+          <Image width={1500} height={500} className="rounded-lg object-cover bg-black" src={post.image} alt="thumbnail" />
 
 
         <div className="flex justify-between items-center mt-10">
